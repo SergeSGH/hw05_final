@@ -120,7 +120,7 @@ class ImagePostCreateFormTests(TestCase):
                 self.assertEqual(post.author.username, self.user.username)
                 self.assertEqual(post.group.title, self.group.title)
                 self.assertIn(
-                    self.test_image_name[:len(self.test_image_name)-4],
+                    self.test_image_name[:len(self.test_image_name) - 4],
                     str(post.image)
                 )
 
@@ -139,6 +139,6 @@ class ImagePostCreateFormTests(TestCase):
             self.group
         )
         self.assertIn(
-            self.test_image_name[:len(self.test_image_name)-4],
+            self.test_image_name[:len(self.test_image_name) - 4],
             str(response.context.get('post').image)
         )
