@@ -120,7 +120,7 @@ def add_comment(request, post_id):
 @login_required
 def follow_index(request):
     template = 'posts/follow.html'
-    post_list = Post.objects.filter(
+    post_list = Post.objects.select_related('author').filter(
         author__in=request.user.follower.values('author')
     )
     paginator = Paginator(post_list, settings.POSTS_NUMBER)
