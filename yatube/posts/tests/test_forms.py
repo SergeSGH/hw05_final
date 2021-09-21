@@ -59,8 +59,7 @@ class PostCreateFormTests(TestCase):
         self.assertEqual(Post.objects.count(), posts_count + 1)
 
         # сортируем список id постов и выбираем последний id
-        posts = Post.objects.all().order_by('id')
-        last_post = posts[len(posts) - 1]
+        last_post = Post.objects.all().order_by('-id').first()
 
         # проверяем что создался пост тестовой группы
         self.assertEqual(

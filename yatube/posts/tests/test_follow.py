@@ -36,9 +36,9 @@ class FollowTests(TestCase):
 
         cls.test_new_post_text = 'Тестовый текст нового поста'
 
-    def test_follow_creation(self):
+    def test_follow(self):
         """Авторизованный пользователь может подписываться
-        на других пользователей и удалять их из подписок"""
+        на других пользователей"""
         response = self.authorized_client.get(
             reverse('posts:profile_follow', kwargs={
                 'username': self.user.username
@@ -52,6 +52,9 @@ class FollowTests(TestCase):
             ).exists()
         )
 
+    def test_unfollow(self):
+        """Авторизованный пользователь может удалять
+            других пользователей из подписок"""
         response = self.authorized_client.get(
             reverse('posts:profile_unfollow', kwargs={
                 'username': self.user.username
