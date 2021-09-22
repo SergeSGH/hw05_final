@@ -60,8 +60,7 @@ class CommentsCreateFormTests(TestCase):
 
         # последний по id коммент относится к нужному посту
         # с тестовым текстом
-        comments = self.post.comments.all().order_by('id')
-        last_comment = comments[len(comments) - 1]
+        last_comment = self.post.comments.all().order_by('-id').first()
         self.assertEqual(
             last_comment.text, self.new_comment_text
         )
