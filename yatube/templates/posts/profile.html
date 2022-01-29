@@ -2,19 +2,14 @@
 
 {% block page_title %}  Профайл пользователя {{ author.get_full_name }} {% endblock %} 
 
-{% block page_header %}  Все посты пользователя {{ author.get_full_name }} {% endblock %}
+{% block page_header %} <h1> {{ author.get_full_name }} </h1> <hr> <p> Всего постов: {{ author.posts.count }} </p> <hr> {% endblock %}
 
 {% block content %} 
   {% load thumbnail %}
     <main>
       <div class="container py-5">        
-        <h3>Всего постов: {{ author.posts.count }} </h3>   
-        <article>
-          <ul>
-            <li>
-              Автор: {{ author.username }}
-              <a href={% url 'posts:profile' author.username %}> все посты пользователя </a>
-            </li>
+ 
+     
 
             {% if request.user.is_authenticated %}
 
@@ -40,15 +35,15 @@
 
             <ul>
               <li>
-                Автор: {{ author.username }}
+                <span style="font-weight:bold">Автор:</span> {{ author.get_full_name }}
               </li>
               <li>
-                Дата публикации: {{ post.pub_date|date:"d E Y" }}
+                <span style="font-weight:bold">Дата публикации:</span> {{ post.pub_date|date:"d E Y" }}
               </li>
 
                 {% if post.group %} 
                     <li>
-                        Группа: {{ post.group.title }}
+                        <span style="font-weight:bold">Группа:</span> {{ post.group.title }}
                     </li>
                 {% endif %} 
 
@@ -57,6 +52,10 @@
             {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
               <img class="card-img my-2" src="{{ im.url }}">
             {% endthumbnail %}
+            <a href="{% url 'posts:post_detail' post.id %}">детали</a> 
+            &nbsp
+            <a href="{% url 'posts:post_edit' post.id %}">редактировать</a> 
+            &nbsp
             {% if post.group %}      
               <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
             {% endif %}      

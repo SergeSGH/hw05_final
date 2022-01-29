@@ -56,6 +56,11 @@ def profile(request, username):
     return render(request, 'posts/profile.html', context)
 
 
+def author(request):
+    author = get_object_or_404(User, username=request.user.username)
+    return profile(request, author)
+
+
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     form = CommentForm(request.POST or None)

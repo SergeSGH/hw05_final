@@ -7,34 +7,32 @@
 {% load thumbnail %}
   <main>
       <div class="row">
-        <aside class="col-12 col-md-3">
+        <aside class="col-12 col-md-4">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              Дата публикации: {{ post.pub_date|date:"d E Y" }} 
+              <span style="font-weight:bold">Дата публикации:</span> {{ post.pub_date|date:"d E Y" }} 
             </li>
             {% if post.group %}  
               <li class="list-group-item">
-                Группа: {{ post.group.title }}
+                <span style="font-weight:bold">Группа:</span> {{ post.group.title }} <br>
                 <a href="{% url 'posts:group_posts' post.group.slug %}">
                   все записи группы
                 </a>
               </li>
             {% endif %} 
               <li class="list-group-item">
-                Автор: {{ post.author.get_full_name }}
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-              Всего постов автора:  <span > {{ post.author.posts.count }} </span>
-            </li>
-            <li class="list-group-item">
+                <span style="font-weight:bold">Автор:</span> {{ post.author.get_full_name }}
+                <br>
+                  Всего постов автора:  <span > {{ post.author.posts.count }} </span>
+                <br>
               <a href={% url 'posts:profile' post.author.username %}>
                 все посты пользователя
               </a>
-            </li>
+              </li>
           </ul>
         </aside>
-        <article class="col-12 col-md-9">
-
+        <article class="col-12 col-md-8">
+      
           <p>
            {{ post.text }}
           </p>
