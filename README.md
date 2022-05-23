@@ -14,16 +14,11 @@ Python, Django, SQLite, HTML
 ```
 git clone https://github.com/SergeSGH/hw05_final.git
 ```
-Установить виртуальное коружение, сделать миграции, создать суперпользователя:
+Установить виртуальное коружение, сделать миграции, создать суперпользователя, запустить сайт:
 ```
 python -m venv venv
 . venv/Scripts/activate
 pip install -r requirements.txt
-python manage.py migrate
-python manage.py createsuperuser
-```
-Инициировать и запустить проект:
-```
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
