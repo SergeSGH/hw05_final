@@ -32,8 +32,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '[::1]',
     'testserver',
-    'www.ssprihodko.com',
-    'ssprihodko.pythonanywhere.com',
+    'sprihodko80.pythonanywhere.com'
 ]
 
 #  подключаем движок filebased.EmailBackend
